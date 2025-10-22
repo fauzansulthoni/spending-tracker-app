@@ -30,7 +30,7 @@ SpendWise is still a work in progress and far from feature-complete. While the c
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/project-name.git
+git clone https://github.com/fauzansulthoni/spending-tracker-app.git
 
 # Install dependencies
 npm install
