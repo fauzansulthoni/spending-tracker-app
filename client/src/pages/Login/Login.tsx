@@ -216,6 +216,7 @@ const Login = () => {
           </Link>
         </Box>
         <Button
+          type="button"
           variant="contained"
           fullWidth
           sx={{ textTransform: "none" }}

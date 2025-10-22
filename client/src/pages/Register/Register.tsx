@@ -9,11 +9,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import authIllustration from "/images/illustration/registration-illustration.png";
-import { useAppDispatch } from "../../hooks/hook";
-import { registerUser } from "../../store/authSlice";
 import { useRegister } from "../../hooks/useRegister";
 import { validateRegisterForm } from "../../hooks/validateRegisterForm";
 import { useLayoutContext } from "../../context/LayoutContext";
@@ -249,6 +247,7 @@ const Register = () => {
       </Grid>
       <Grid size={12} sx={{ alignSelf: "end" }}>
         <Button
+          type="button"
           variant="contained"
           fullWidth
           sx={{ textTransform: "none" }}

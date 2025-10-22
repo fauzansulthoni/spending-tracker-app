@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { months } from "../../config/monthConfig";
 import dayjs from "dayjs";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";

@@ -65,7 +65,7 @@ export const UserContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [snackbarState, setSnackbarState] = useState<SnackbarCustomProps>({
     open: false,
     severity: "success",
-    onClose: () => setSnackbarState((prev) => ({ ...prev, open: false })),
+    onClose: () => setSnackbarState((prev) => ({ ...prev, open: true })),
     anchorOrigin: {
       horizontal: "right",
       vertical: "top",
@@ -171,30 +171,38 @@ export const UserContextProvider: FC<PropsWithChildren> = ({ children }) => {
     setFilterBudget((prev) => ({ ...prev, accountId: activeAccount }));
   }, [activeAccount]);
 
-  const value = useMemo(
+  const snackbarData = useMemo(
+    () => ({ snackbarState, setSnackbarState }),
+    [snackbarState]
+  );
+  const accountData = useMemo(
     () => ({
-      snackbarState,
-      setSnackbarState,
       activeAccount,
       setActiveItem,
       accountListFiltered,
       setFilterAccount,
-      transactionListFiltered,
-      setFilterTransaction,
-      categoryListFiltered,
-      setFilterCategory,
-      budgetListFiltered,
-      setFilterBudget,
     }),
-    [
-      snackbarState,
-      activeAccount,
-      accountListFiltered,
-      transactionListFiltered,
-      categoryListFiltered,
-      budgetListFiltered,
-    ]
+    [activeAccount, accountListFiltered]
   );
+  const transactionData = useMemo(
+    () => ({ transactionListFiltered, setFilterTransaction }),
+    [transactionListFiltered]
+  );
+  const categoryData = useMemo(
+    () => ({ categoryListFiltered, setFilterCategory }),
+    [categoryListFiltered]
+  );
+  const budgetData = useMemo(
+    () => ({ budgetListFiltered, setFilterBudget }),
+    [budgetListFiltered]
+  );
+  const value = {
+    ...snackbarData,
+    ...accountData,
+    ...transactionData,
+    ...categoryData,
+    ...budgetData,
+  };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

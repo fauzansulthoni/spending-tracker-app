@@ -6,7 +6,6 @@ import {
   Select,
   Stack,
 } from "@mui/material";
-import React from "react";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 
 const Test = () => {

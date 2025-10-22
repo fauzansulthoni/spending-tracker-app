@@ -1,4 +1,4 @@
-import React, { memo, type RefObject } from "react";
+import  { memo, type RefObject } from "react";
 import { Box, Chip, Avatar, Typography } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
 import type { AccountType } from "../../types/Account";

@@ -28,9 +28,6 @@ import dayjs from "dayjs";
 import { useSummary } from "../../hooks/useSummary";
 import DeleteButton from "../Common/DeleteButton";
 import type { DeleteConfirmationType } from "../Common/DeleteConfirmation";
-import { deleteAccount } from "../../store/accountSlice";
-import { useAppDispatch, useAppSelector } from "../../hooks/hook";
-import { useUserContext } from "../../context/UserContext";
 import EditButton from "../Common/EditButton";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
 

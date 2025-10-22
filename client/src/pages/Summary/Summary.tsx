@@ -1,30 +1,7 @@
-import {
-  Box,
-  Typography,
-  Stack,
-  Button,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-  Chip,
-  Avatar,
-  Grid,
-} from "@mui/material";
-import { useThemeContext } from "../../theme/ThemeContextProvider";
+import { Box, Grid } from "@mui/material";
 import AddTransaction from "../../components/Features/AddTransaction";
-import {
-  AccountCircleOutlined,
-  AddCardOutlined,
-  CategoryOutlined,
-  FlagOutlined,
-  InsertChartOutlined,
-  WalletOutlined,
-} from "@mui/icons-material";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
-import useSpeedDialTrigger from "../../hooks/useSpeedDialTrigger";
 import { useSummary } from "../../hooks/useSummary";
-import useCurrencyFormatter from "../../hooks/useCurrencyFormatter";
-import { useAccountTotalSpending } from "../../hooks/useAccountTotalSpending";
 import Loading from "../../components/Common/Loading";
 import { AccountSelector } from "../../components/Features/AccountSelector";
 import AddBudget from "../../components/Features/AddBudget";
@@ -54,59 +31,12 @@ const Summary = () => {
   const [openSpendingReport, setOpenSpendingReport] = useState(false);
   const [openSpendingGoals, setOpenSpendingGoals] = useState(false);
   const [openSpendingBudget, setOpenSpendingBudget] = useState(false);
-  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [editSpending, setEditSpending] = useState({});
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deleteDialogProps, setDeleteDialogProps] = useState({});
-  const { theme } = useThemeContext();
-  const { speedDialProps } = useSpeedDialTrigger();
-  const actions = [
-    {
-      icon: <AddCardOutlined />,
-      name: "Spending",
-      control: () => {
-        if (filteredCategories.length > 0) {
-          setOpenAdd(true);
-        } else {
-          alert(
-            "You don't have any category, please add category before adding budget"
-          );
-        }
-      },
-    },
-    {
-      icon: <CategoryOutlined />,
-      name: "Category",
-      control: () => setOpenAddCategory(true),
-    },
-    {
-      icon: <AccountCircleOutlined />,
-      name: "Account",
-      control: () => setOpenAddAccount(true),
-    },
-    {
-      icon: <WalletOutlined />,
-      name: "Budget",
-      control: () => {
-        if (filteredCategories.length > 0) {
-          setOpenSpendingBudget(true);
-        } else {
-          alert(
-            "You don't have any category, please add category before adding budget"
-          );
-        }
-      },
-    },
-  ];
 
-  const { currencyFormatter } = useCurrencyFormatter();
-  const { totalSpendingAccount } = useAccountTotalSpending();
-  const {
-    activeAccount,
-    setActiveItem,
-    filteredAccounts,
-    filteredTransactions,
-    filteredCategories,
-  } = useSummary();
+  const { activeAccount, setActiveItem, filteredAccounts, filteredCategories } =
+    useSummary();
   // const { setFilteredByCategory } = FilterTransactionByCategory;
 
   const chipRefs = useRef<Record<string, HTMLDivElement | null>>({});

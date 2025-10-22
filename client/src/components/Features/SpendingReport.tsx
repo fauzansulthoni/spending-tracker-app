@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import Divider from "@mui/material/Divider";
 import AppBar from "@mui/material/AppBar";
@@ -8,32 +7,17 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import type { TransitionProps } from "@mui/material/transitions";
-import { forwardRef, useState, type ReactElement, type Ref } from "react";
+import { forwardRef, type ReactElement, type Ref } from "react";
 import {
-  Avatar,
   Box,
-  DialogActions,
   DialogContent,
-  FormControl,
-  FormLabel,
   Grid,
-  InputLabel,
-  MenuItem,
   Paper,
-  Select,
   Stack,
-  TextareaAutosize,
-  TextField,
 } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import {
   ArrowUpward,
-  Edit as EditIcon,
-  ShareOutlined,
 } from "@mui/icons-material";
-import { useThemeContext } from "../../theme/ThemeContextProvider";
-import dayjs from "dayjs";
 import { PieChart, LineChart } from "@mui/x-charts";
 
 const Transition = forwardRef(function Transition(
@@ -60,25 +44,17 @@ const incomeExpenseData = [
   { label: "Expenses", value: 3000 },
 ];
 
-const COLORS = ["#1976d2", "#d32f2f"];
 type OpenDialogType = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const SpendingReport = (props: OpenDialogType) => {
   const { open, setOpen } = props;
-  const { theme } = useThemeContext();
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleShare = () => {
-    console.log("this button will share this to do");
-  };
   return (
     <Dialog
       fullScreen

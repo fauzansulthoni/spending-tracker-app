@@ -7,7 +7,7 @@ interface LoginFormData {
 export const validateLoginForm = (
   name: keyof LoginFormData,
   value: string,
-  formData: LoginFormData
+  _formData: LoginFormData
 ): string | undefined => {
   switch (name) {
     case "email":

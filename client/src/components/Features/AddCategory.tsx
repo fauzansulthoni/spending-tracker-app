@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import type { TransitionProps } from "@mui/material/transitions";
-import { forwardRef, useEffect, type ReactElement, type Ref } from "react";
+import { forwardRef, type ReactElement, type Ref } from "react";
 import {
   Box,
   DialogActions,
@@ -32,11 +32,7 @@ import { useAddCategory } from "../../hooks/useAddCategory";
 import { useSummary } from "../../hooks/useSummary";
 import DeleteButton from "../Common/DeleteButton";
 import type { DeleteConfirmationType } from "../Common/DeleteConfirmation";
-import { deleteCategory } from "../../store/categorySlice";
-import { useAppDispatch } from "../../hooks/hook";
-import { useUserContext } from "../../context/UserContext";
 import EditButton from "../Common/EditButton";
-import type { CategoryType } from "../../types/Category";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
 
 const Transition = forwardRef(function Transition(
@@ -57,8 +53,7 @@ type OpenDialogType = {
   >;
 };
 const AddCategory = (props: OpenDialogType) => {
-  const { open, setOpen, setOpenDeleteDialog, setDeleteDialogProps } = props;
-  const dispatch = useAppDispatch();
+  const { open, setOpen, setOpenDeleteDialog, setDeleteDialogProps } = props;  
   const handleClose = () => {
     setOpen(false);
   };

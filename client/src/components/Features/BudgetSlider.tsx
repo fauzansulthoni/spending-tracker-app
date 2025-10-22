@@ -1,5 +1,5 @@
-import { Slider, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Slider } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useAppDispatch } from "../../hooks/hook";
 import { updateBudget } from "../../store/budgetSlice";
@@ -17,9 +17,9 @@ const BudgetSlider = (props: BudgetSliderType) => {
   const [newBudgetValue, setNewBudgetValue] = useState(budget);
 
   const handleChange = (
-    event: Event,
+    _event: Event,
     value: number | number[],
-    activeThumb: number
+    _activeThumb: number
   ) => {
     const valuePercentage = typeof value === "number" ? value : value[0];
     const newBudget = Math.round((valuePercentage / 100) * totalIncome);

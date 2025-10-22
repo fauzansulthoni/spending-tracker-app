@@ -17,10 +17,7 @@ import React, { useState } from "react";
 import { useSummary } from "../../hooks/useSummary";
 import { useFilterTransactionByCategory } from "../../hooks/useFilterTransactionByCategory";
 import DeleteButton from "../Common/DeleteButton";
-import { deleteTransaction } from "../../store/transactionSlice";
-import { useAppDispatch } from "../../hooks/hook";
 import type { DeleteConfirmationType } from "../Common/DeleteConfirmation";
-import { useUserContext } from "../../context/UserContext";
 import EditButton from "../Common/EditButton";
 import type { SpendingFormType } from "./AddTransaction";
 import { useAddTransaction } from "../../hooks/useAddTransaction";
@@ -45,17 +42,10 @@ const SpendingHistory = (props: SpendingHistoryType) => {
 
   const { theme } = useThemeContext();
   const [category, setCategory] = useState<string>("All Categories");
-  const {
-    filteredCategories,
-    filteredTransactions,
-    setFilterTransaction,
-    activeAccount,
-  } = useSummary();
+  const { filteredCategories, filteredTransactions } = useSummary();
 
   const { filteredByCategory, handleFilterByCategory } =
     useFilterTransactionByCategory(filteredTransactions);
-  const dispatch = useAppDispatch();
-  const userContext = useUserContext();
   const { handleDelete } = useAddTransaction();
   const transactionCategory = (value: string) => {
     const data = filteredCategories.filter((item) => item._id === value)[0];
@@ -108,67 +98,70 @@ const SpendingHistory = (props: SpendingHistoryType) => {
         {filteredCategories.length > 1 &&
           filteredByCategory.map((tx, idx) => {
             const category = transactionCategory(tx.categoryId);
-            return (
-              <ListItem
-                key={idx}
-                disableGutters
-                sx={{
-                  paddingInline: 2,
-                  gap: 1,
-                }}
-              >
-                {" "}
-                <IconButton
+            if (category !== undefined)
+              return (
+                <ListItem
+                  key={idx}
+                  disableGutters
                   sx={{
-                    backgroundColor: category && alpha(category.color, 0.2),
-                    color: category && category.color,
-                    width: "40px",
-                    height: "40px",
-                    padding: 3,
-                    borderRadius: 2,
-                    "&:hover": {
-                      backgroundColor: category && alpha(category.color, 0.5),
-                    },
+                    paddingInline: 2,
+                    gap: 1,
                   }}
                 >
-                  {category ? <DynamicIcon iconName={category.icon} /> : "🤑"}
-                  {/* {category && category.icon} */}
-                </IconButton>
-                <ListItemText
-                  primary={tx.note}
-                  secondary={
-                    <Typography
-                      fontSize={14}
-                      color={theme.palette.bgColor.contrastText}
-                    >
-                      {category.name}
-                    </Typography>
-                  }
-                />
-                <Typography color={tx.type === "Expense" ? "error" : "success"}>
-                  {currencyFormatter(tx.amount.toString())}
-                </Typography>
-                <Box>
-                  <EditButton
-                    onClick={() => {
-                      setOpenAdd(true);
-                      setEditSpending({ editData: tx });
+                  {" "}
+                  <IconButton
+                    sx={{
+                      backgroundColor: category && alpha(category.color, 0.2),
+                      color: category && category.color,
+                      width: "40px",
+                      height: "40px",
+                      padding: 3,
+                      borderRadius: 2,
+                      "&:hover": {
+                        backgroundColor: category && alpha(category.color, 0.5),
+                      },
                     }}
+                  >
+                    {category ? <DynamicIcon iconName={category.icon} /> : "🤑"}
+                    {/* {category && category.icon} */}
+                  </IconButton>
+                  <ListItemText
+                    primary={tx.note}
+                    secondary={
+                      <Typography
+                        fontSize={14}
+                        color={theme.palette.bgColor.contrastText}
+                      >
+                        {category.name}
+                      </Typography>
+                    }
                   />
-                  <DeleteButton
-                    onDelete={() => {
-                      setOpenDeleteDialog(true);
-                      setDeleteDialogProps({
-                        title: `Confirm Delete`,
-                        message: `Are you sure want to delete this transaction - ${tx.note}? This action be undone.`,
-                        onDelete: () => tx._id && handleDelete(tx._id),
-                      });
-                    }}
-                  />
-                </Box>
-                {idx < filteredByCategory.length - 1 && <Divider />}
-              </ListItem>
-            );
+                  <Typography
+                    color={tx.type === "Expense" ? "error" : "success"}
+                  >
+                    {currencyFormatter(tx.amount.toString())}
+                  </Typography>
+                  <Box>
+                    <EditButton
+                      onClick={() => {
+                        setOpenAdd(true);
+                        setEditSpending({ editData: tx });
+                      }}
+                    />
+                    <DeleteButton
+                      onDelete={() => {
+                        setOpenDeleteDialog(true);
+                        setDeleteDialogProps({
+                          title: `Confirm Delete`,
+                          message: `Are you sure want to delete this transaction - ${tx.note}? This action be undone.`,
+                          onDelete: () => tx._id && handleDelete(tx._id),
+                        });
+                      }}
+                    />
+                  </Box>
+                  {idx < filteredByCategory.length - 1 && <Divider />}
+                </ListItem>
+              );
           })}
       </List>
     </Stack>

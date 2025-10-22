@@ -162,7 +162,6 @@ const AddTransaction = (props: SpendingFormType) => {
             }}
             label="Amount"
             fullWidth
-            variant="outlined"
           />
           <FormControl fullWidth>
             <InputLabel id="select-category-label">Category</InputLabel>

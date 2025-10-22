@@ -1,7 +1,6 @@
 import { useMediaQuery } from "@mui/material";
 import {
   createContext,
-  useState,
   useContext,
   type FC,
   type PropsWithChildren,

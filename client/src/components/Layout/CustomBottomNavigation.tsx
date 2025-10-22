@@ -1,16 +1,11 @@
 import {
-  Favorite,
   HomeOutlined,
   InsightsOutlined,
-  ListAltOutlined,
-  LocationOn,
-  Restore,
   SettingsOutlined,
 } from "@mui/icons-material";
 import {
   BottomNavigation,
   BottomNavigationAction,
-  Box,
   Divider,
 } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
@@ -55,7 +50,7 @@ const CustomBottomNavigation = (props: CustomBottomNavigationType) => {
         display: { xs: "flex", md: "none" },
       }}
       value={value}
-      onChange={(event, newValue) => setValue(newValue)}
+      onChange={(_, newValue) => setValue(newValue)}
     >
       <Divider />
       {navItems.map(({ to, label, icon }) => (

@@ -8,13 +8,7 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import type { TransitionProps } from "@mui/material/transitions";
-import {
-  forwardRef,
-  useEffect,
-  useState,
-  type ReactElement,
-  type Ref,
-} from "react";
+import { forwardRef, useEffect, type ReactElement, type Ref } from "react";
 import {
   Box,
   DialogActions,
@@ -29,17 +23,12 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  TextField,
 } from "@mui/material";
-import DynamicIcon, { iconsArr } from "../../hooks/useDynamicIcon";
-import { dynamicColors } from "../../hooks/useDynamicColor";
-import { Circle } from "@mui/icons-material";
 import { useSummary } from "../../hooks/useSummary";
 import { useAddBudget } from "../../hooks/useAddBudget";
 import { months } from "../../config/monthConfig";
 import dayjs from "dayjs";
 import { CurrencyTextField } from "../Common/CurrencyTextField";
-import { useAppSelector } from "../../hooks/hook";
 import useCurrencyFormatter from "../../hooks/useCurrencyFormatter";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
 
@@ -94,7 +83,6 @@ const AddBudget = (props: OpenDialogType) => {
       }
     }, [open]);
 
-    const [month, setMonth] = useState("");
     const { currencyFormatter } = useCurrencyFormatter();
     const usedCategoryIds = new Set(filteredBudget.map((b) => b.categoryId));
     const unusedCategories = filteredCategories.filter(
@@ -160,7 +148,6 @@ const AddBudget = (props: OpenDialogType) => {
                 name="month"
                 value={typeof formData.month === "string" ? formData.month : ""}
                 onChange={(e) => {
-                  setMonth(e.target.value);
                   handleSelectChange(e);
                 }}
               >
@@ -211,7 +198,6 @@ const AddBudget = (props: OpenDialogType) => {
               }}
               label="Limit amount"
               fullWidth
-              variant="outlined"
             />
             {/* Look up for current target start*/}
             <Typography>Current Budget</Typography>

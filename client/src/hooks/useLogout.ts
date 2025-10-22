@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useAppDispatch } from "./hook";
 import { logoutUser } from "../store/authSlice";
 import { useNavigate } from "react-router-dom";

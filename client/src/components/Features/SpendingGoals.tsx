@@ -1,54 +1,31 @@
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import Divider from "@mui/material/Divider";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import type { TransitionProps } from "@mui/material/transitions";
 import {
   forwardRef,
-  useEffect,
-  useState,
   type ReactElement,
   type Ref,
 } from "react";
 import {
   alpha,
-  Avatar,
   Box,
   Card,
   CardContent,
-  DialogActions,
   DialogContent,
-  FormControl,
-  FormLabel,
-  Grid,
-  InputLabel,
+
   LinearProgress,
-  MenuItem,
-  Select,
-  Slider,
+
   Stack,
-  TextareaAutosize,
-  TextField,
 } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import {
   ArrowBack,
-  AttractionsOutlined,
-  BedOutlined,
-  Edit as EditIcon,
-  FastfoodOutlined,
-  LocalAirportOutlined,
-  Lock,
-  ShareOutlined,
 } from "@mui/icons-material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
-import dayjs from "dayjs";
 import { useSummary } from "../../hooks/useSummary";
 import { useAccountTotalSpending } from "../../hooks/useAccountTotalSpending";
 import DynamicIcon from "../../hooks/useDynamicIcon";
@@ -65,37 +42,6 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const budgetData = [
-  {
-    icon: <FastfoodOutlined color="primary" />,
-    category: "Food",
-    budget: 300,
-    spent: 180,
-  },
-  {
-    icon: <AttractionsOutlined color="primary" />,
-    category: "Entertainment",
-    budget: 100,
-    spent: 40,
-  },
-  {
-    icon: (
-      <LocalAirportOutlined
-        sx={{ transform: "rotate(45deg)" }}
-        color="primary"
-      />
-    ),
-    category: "Transportation",
-    budget: 200,
-    spent: 150,
-  },
-  {
-    icon: <BedOutlined color="primary" />,
-    category: "Accomodation",
-    budget: 200,
-    spent: 150,
-  },
-];
 type OpenDialogType = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -103,16 +49,9 @@ type OpenDialogType = {
 const SpendingGoals = (props: OpenDialogType) => {
   const { open, setOpen } = props;
   const { theme } = useThemeContext();
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
+ 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleShare = () => {
-    console.log("this button will share this to do");
   };
 
   const { filteredBudget, filteredCategories, filteredTransactions } =

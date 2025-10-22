@@ -4,8 +4,6 @@ import {
   alpha,
   Box,
   Button,
-  Card,
-  CardContent,
   Divider,
   Grid,
   LinearProgress,
@@ -16,8 +14,6 @@ import { useSummary } from "../../hooks/useSummary";
 import { useAccountTotalSpending } from "../../hooks/useAccountTotalSpending";
 import DynamicIcon from "../../hooks/useDynamicIcon";
 import useCurrencyFormatter from "../../hooks/useCurrencyFormatter";
-import type { BudgetType } from "../../types/Budget";
-import { useEffect } from "react";
 interface BudgetProgress {
   setOpenSpendingGoals: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -36,21 +32,10 @@ export const BudgetProgress = ({ setOpenSpendingGoals }: BudgetProgress) => {
     );
     return transaction;
   };
-  const { sumPerCategoryAccount, totalIncomeAccount } =
+  const { sumPerCategoryAccount } =
     useAccountTotalSpending();
   const { currencyFormatter } = useCurrencyFormatter();
-  const sumAnotherCategoryBudget = (
-    budgets: BudgetType[],
-    currentId: string
-  ) => {
-    const totalBudget = budgets.reduce((sum, item) => {
-      if (item._id !== currentId) {
-        return sum + item.limitAmount;
-      }
-      return sum;
-    }, 0);
-    return totalBudget;
-  };
+
   return (
     <>
       <Stack direction="row" justifyContent={"space-between"}>
@@ -90,19 +75,19 @@ export const BudgetProgress = ({ setOpenSpendingGoals }: BudgetProgress) => {
             typeof item.categoryId === "string" &&
             transactions !== null &&
             sumPerCategoryAccount(transactions, item.categoryId);
-          const totalIncome =
-            transactions !== null
-              ? totalIncomeAccount(filteredTransactions)
-              : 0;
+          // const totalIncome =
+          //   transactions !== null
+          //     ? totalIncomeAccount(filteredTransactions)
+          //     : 0;
           const percentage =
             typeof sumTransactions === "number"
               ? Math.round((Math.abs(sumTransactions) / item.limitAmount) * 100)
               : 0;
           const isMoreThanBudget = percentage > 100;
-          const anotherCategoryBudget =
-            typeof item._id === "string"
-              ? sumAnotherCategoryBudget(filteredBudget, item._id)
-              : 0;
+          // const anotherCategoryBudget =
+          //   typeof item._id === "string"
+          //     ? sumAnotherCategoryBudget(filteredBudget, item._id)
+          //     : 0;
           return (
             <Box key={index}>
               <Stack direction="column" spacing={2} padding={2}>

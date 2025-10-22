@@ -14,10 +14,7 @@ import React, { useState } from "react";
 import { useSummary } from "../../hooks/useSummary";
 import { useFilterTransactionByCategory } from "../../hooks/useFilterTransactionByCategory";
 import DeleteButton from "../Common/DeleteButton";
-import { deleteTransaction } from "../../store/transactionSlice";
-import { useAppDispatch } from "../../hooks/hook";
 import type { DeleteConfirmationType } from "../Common/DeleteConfirmation";
-import { useUserContext } from "../../context/UserContext";
 import EditButton from "../Common/EditButton";
 import type { SpendingFormType } from "./AddTransaction";
 import { useAddTransaction } from "../../hooks/useAddTransaction";
@@ -44,13 +41,9 @@ const SpendingHistoryMobile = (props: SpendingHistoryType) => {
   const {
     filteredCategories,
     filteredTransactions,
-    setFilterTransaction,
-    activeAccount,
   } = useSummary();
   const { filteredByCategory, handleFilterByCategory } =
     useFilterTransactionByCategory(filteredTransactions);
-  const dispatch = useAppDispatch();
-  const userContext = useUserContext();
   const { handleDelete } = useAddTransaction();
   const transactionCategory = (value: string) => {
     const data = filteredCategories.filter((item) => item._id === value)[0];

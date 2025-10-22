@@ -3,12 +3,11 @@ import {
   Button,
   Grid,
   IconButton,
-  Stack,
   Typography,
 } from "@mui/material";
 import welcomeIllustration from "/images/illustration/welcome-illustration.png";
-import { ArrowBack, HelpOutline, HelpOutlined } from "@mui/icons-material";
-import { useNavigate, createSearchParams } from "react-router-dom";
+import { HelpOutline } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
 import { useLayoutContext } from "../../context/LayoutContext";
 

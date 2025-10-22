@@ -1,26 +1,13 @@
-import {
-  Box,
-  Divider,
-  IconButton,
-  LinearProgress,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
-import { Outlet, useLocation, useNavigation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import CustomBottomNavigation from "./CustomBottomNavigation";
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import SnackbarCustom, { defaultSnackbarState } from "../Common/SnackbarCustom";
 import { useUserContext } from "../../context/UserContext";
-import { useAppSelector } from "../../hooks/hook";
-import MobileTopNav from "./MobileTopNav";
+// import { useAppSelector } from "../../hooks/hook";
 import TopNav from "./TopNav";
-import { useLayoutContext } from "../../context/LayoutContext";
 
 const UserLayout = () => {
   const { theme } = useThemeContext();
@@ -29,19 +16,18 @@ const UserLayout = () => {
   useEffect(() => {
     setValue(location.pathname);
   }, [location.pathname]);
-  const isLoadingTransaction = useAppSelector(
-    (state) => state.transaction.isLoading
-  );
-  const isLoadingCategory = useAppSelector((state) => state.category.isLoading);
-  const isLoadingAccount = useAppSelector((state) => state.account.isLoading);
-  const isAnyLoading = useMemo(
-    () => isLoadingTransaction || isLoadingCategory || isLoadingAccount,
-    [isLoadingTransaction, isLoadingCategory, isLoadingAccount]
-  );
+  // const isLoadingTransaction = useAppSelector(
+  //   (state) => state.transaction.isLoading
+  // );
+  // const isLoadingCategory = useAppSelector((state) => state.category.isLoading);
+  // const isLoadingAccount = useAppSelector((state) => state.account.isLoading);
+  // const isAnyLoading = useMemo(
+  //   () => isLoadingTransaction || isLoadingCategory || isLoadingAccount,
+  //   [isLoadingTransaction, isLoadingCategory, isLoadingAccount]
+  // );
 
-  const [headerName, setHeaderName] = useState("SpendWise");
+  const [_headerName, setHeaderName] = useState("SpendWise");
   const snackbarState = useUserContext()?.snackbarState ?? defaultSnackbarState;
-  const { isSmUp } = useLayoutContext();
   return (
     <Box
       sx={{
@@ -72,7 +58,6 @@ const UserLayout = () => {
       <CustomBottomNavigation setHeaderName={setHeaderName} />
       {/* Reusable snackbar */}
       {snackbarState ? <SnackbarCustom {...snackbarState} /> : null}
-     
     </Box>
   );
 };

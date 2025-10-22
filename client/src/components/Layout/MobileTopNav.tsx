@@ -1,5 +1,4 @@
 import { IconButton, LinearProgress, Stack, Typography } from "@mui/material";
-import React from "react";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
 import { ArrowBack } from "@mui/icons-material";
 interface MobileTopNav {

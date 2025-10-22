@@ -6,7 +6,6 @@ import { useThemeContext } from "./theme/ThemeContextProvider";
 import { useAppDispatch, useAppSelector } from "./hooks/hook";
 import { lazy, Suspense, useEffect } from "react";
 import { checkAuth } from "./store/authSlice";
-import Test from "./pages/Test";
 import { UserContextProvider } from "./context/UserContext";
 import Loading from "./components/Common/Loading";
 import { LayoutContextProvider } from "./context/LayoutContext";

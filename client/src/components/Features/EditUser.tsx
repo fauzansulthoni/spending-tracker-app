@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import type { TransitionProps } from "@mui/material/transitions";
-import { forwardRef, useState, type ReactElement, type Ref } from "react";
+import { forwardRef, type ReactElement, type Ref } from "react";
 import {
   Avatar,
   Box,
@@ -17,7 +17,7 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { Edit as EditIcon, ShareOutlined } from "@mui/icons-material";
+import { Edit as EditIcon } from "@mui/icons-material";
 import { useEditUser } from "../../hooks/useEditUser";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
 

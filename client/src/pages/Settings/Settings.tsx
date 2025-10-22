@@ -1,36 +1,26 @@
 import {
-  ArrowBack,
   AttachMoneyOutlined,
   ChevronRight,
   ContrastOutlined,
   LayersClearOutlined,
-  Lock,
   LockOutlined,
   LogoutOutlined,
-  Mail,
   NotificationsOutlined,
-  Person,
   PersonOutlineOutlined,
   VerifiedUserOutlined,
 } from "@mui/icons-material";
 import {
   Box,
-  Button,
   Divider,
   FormControlLabel,
   Grid,
   IconButton,
-  InputBase,
-  List,
   ListItem,
   Paper,
   Stack,
   Typography,
 } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
-import Switch, { type SwitchProps } from "@mui/material/Switch";
-import { styled } from "@mui/material/styles";
-import SpendingGoals from "../../components/Features/SpendingGoals";
 import EditUser from "../../components/Features/EditUser";
 import { useLogout } from "../../hooks/useLogout";
 import IOSSwitch from "../../components/Common/IOSSwitch";
@@ -142,7 +132,7 @@ const Settings = () => {
                     onClick={handleClickOpenEditUser}
                   />
                 }
-              />
+              />  
               <Divider />
               <SettingItem
                 icon={<LockOutlined color="primary" />}
@@ -271,7 +261,7 @@ const Settings = () => {
                     control={<ChevronRight />}
                     label=""
                     sx={{ m: 1 }}
-                    aria-label="Toggle dark mode"
+                    aria-label="Clear all app data"
                   />
                 }
               />

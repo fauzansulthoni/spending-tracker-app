@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "./hook";
+import { useAppDispatch } from "./hook";
 import {
   addCategory,
   deleteCategory,

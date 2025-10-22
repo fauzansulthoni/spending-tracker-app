@@ -5,7 +5,6 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -19,8 +18,8 @@ import {
   InsightsOutlined,
   SettingsOutlined,
 } from "@mui/icons-material";
-import { useAppDispatch, useAppSelector } from "../../hooks/hook";
 import { useLogout } from "../../hooks/useLogout";
+import { useAppSelector } from "../../hooks/hook";
 
 type NavItem = {
   label: string;
@@ -39,29 +38,18 @@ const navItems: NavItem[] = [
 ];
 
 function TopNav() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
   const { theme } = useThemeContext();
-  const dispatch = useAppDispatch();
   const { handleLogout } = useLogout();
   const { user } = useAppSelector((state) => state.auth);
   return (
@@ -118,7 +106,7 @@ function TopNav() {
               justifyContent: "center",
             }}
           >
-            {navItems.map(({ to, label, icon }) => (
+            {navItems.map(({ to, label }) => (
               <Button
                 key={to}
                 component={Link}

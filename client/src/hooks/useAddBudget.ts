@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "./hook";
+import { useState } from "react";
+import { useAppDispatch } from "./hook";
 import { addBudget } from "../store/budgetSlice";
 import type { BudgetType } from "../types/Budget";
 import type { SelectChangeEvent } from "@mui/material";

@@ -6,7 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 export interface DeleteConfirmationType {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;

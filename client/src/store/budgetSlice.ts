@@ -125,7 +125,7 @@ const BudgetSlice = createSlice({
       .addCase(checkBudget.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(checkBudget.fulfilled, (state, action) => {
+      .addCase(checkBudget.fulfilled, (state, _action) => {
         state.isLoading = false;
       })
       .addCase(checkBudget.rejected, (state) => {

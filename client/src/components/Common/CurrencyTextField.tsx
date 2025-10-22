@@ -1,26 +1,39 @@
+import { TextField, type TextFieldProps } from "@mui/material";
 import CurrencyInput from "react-currency-input-field";
-import { TextField } from "@mui/material";
-import type { ComponentProps, FC } from "react";
+import { forwardRef } from "react";
 
-interface CurrencyTextFieldProps extends ComponentProps<typeof TextField> {
+interface CurrencyTextFieldProps
+  extends Omit<TextFieldProps, "value" | "onChange" | "inputComponent"> {
   name: string;
   value: string;
   onValueChange: (value: string | undefined) => void;
 }
 
-export const CurrencyTextField: FC<CurrencyTextFieldProps> = ({
+const CurrencyInputComponent = forwardRef<HTMLInputElement, any>(
+  (props, ref) => (
+    <CurrencyInput {...props} ref={ref} decimalsLimit={2} prefix="Rp" />
+  )
+);
+
+export const CurrencyTextField = ({
   name,
   value,
   onValueChange,
   ...muiProps
-}) => (
-  <CurrencyInput
-    name={name}
-    value={value}
-    onValueChange={onValueChange}
-    decimalsLimit={2}
-    prefix="Rp"
-    customInput={TextField}
-    {...muiProps}
-  />
-);
+}: CurrencyTextFieldProps) => {
+  return (
+    <TextField
+      {...muiProps}
+      name={name}
+      value={value}
+      onChange={() => {}} // required to suppress MUI warning
+      InputProps={{
+        inputComponent: CurrencyInputComponent as any,
+        inputProps: {
+          value,
+          onValueChange,
+        },
+      }}
+    />
+  );
+};
