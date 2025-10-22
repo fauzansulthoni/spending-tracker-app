@@ -62,6 +62,15 @@ git clone https://github.com/fauzansulthoni/spending-tracker-app.git
 # Install dependencies
 npm install
 
+# Configure the server .env in the /server folder
+NODE_ENV=development
+MONGODB_URI=mongodb://your_mongodb_uri/spending-tracker
+PORT=5000
+CLIENT_SECRET_KEY=TEST
+
+# Start development server (server)
+npm start
+
 # Start development server
 npm run dev
 
